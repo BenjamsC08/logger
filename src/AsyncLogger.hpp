@@ -19,20 +19,20 @@ public:
 	AsyncLogger &operator=(const AsyncLogger &) = delete;
 	/*			Interface		  */
 	virtual void	Log(const std::string &message, int level);
+	virtual void	SetMinLevel(int level);
 
 	void	AddLogger(ILogger *);
-	void	AddMessage(const std::string &);
-
 
 private:
 	void	Run();
-	virtual void	SetMinLevel(int level);
+
+private:
 	std::vector<ILogger *>	loggers_;
 	std::deque<std::string>	msgs_;
 	std::deque<int>			levels_;
+
 	std::thread				tLog_;
-	std::mutex				mtxMsg_;
-	std::mutex				mtxLog_;
+	std::mutex				mtx_;
 	std::condition_variable	cv_;
 	bool					endRequested_;
 
