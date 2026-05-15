@@ -1,3 +1,2 @@
+#include "AsyncLogger.hpp"
 
-
-int main
