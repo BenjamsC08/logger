@@ -2,3 +2,4 @@ logger
 *.o
 obj
 *.json
+*.log

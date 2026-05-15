@@ -1,32 +1,44 @@
+#include <ctime>
+#include "FileLogger.hpp"
 
-#include "ConsoleLogger.hpp"
-#include <ios>
-
-ConsoleLogger::ConsoleLogger(std::string &filePath): file_(filePath.c_str(), std::ios::app), minLevel_(0)
+FileLogger::FileLogger(std::string filePath): ofs_(filePath.c_str(), std::ios::app), minLvl_(0)
 {}
 
-ConsoleLogger::ConsoleLogger(std::string &filePath, int minLvl): 
-	file_(filePath.c_str(), std::ios::app), minLevel_(minLvl)
+FileLogger::FileLogger(std::string filePath, int minLvl): 
+	ofs_(filePath.c_str(), std::ios::app), minLvl_(minLvl)
 {}
-	
-// ConsoleLogger::ConsoleLogger(const ConsoleLogger &src)
-// {}
-//
-// ConsoleLogger &ConsoleLogger::operator=(const ConsoleLogger &src)
-// {}
-	
-ConsoleLogger::~ConsoleLogger()
+
+FileLogger::~FileLogger()
 {
-	if (this->file_.is_open())
-		this->file_.close();
+	if (this->ofs_.is_open())
+		this->ofs_.close();
 }
 	
-void	ConsoleLogger::Log(const std::string &message, int level)
+void	FileLogger::Log(const std::string &message, int level)
 {
-	if (level < this->minLevel_)
+	if (level < this->minLvl_)
 		return ;
-	this->file_
+	std::time_t now = std::time(NULL);
+	char buff[16];
+	std::strftime(buff, sizeof(buff),"%y%m%d-%H%M", std::localtime(&now));
+	std::string start = std::string(buff);
+	switch (level)
+	{
+		case 0:
+			start += " | [Info] ";
+			break;
+		case 1:
+			start += " | [Warn] ";
+			break;
+		case 2:
+			start += " | [Err] ";
+			break;
+		default:
+			start += " | ";
+	}
+	start += message;
+	ofs_ << start << '\n';
 }
 	
-void	ConsoleLogger::SetMinLevel(int lvl)
-{}
+void	FileLogger::SetMinLevel(int lvl)
+{	this->minLvl_ = lvl;	}
