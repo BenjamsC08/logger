@@ -30,7 +30,7 @@ clean:
 	rm -f $(OBJ) obj/*/*.d obj/*.d
 
 fclean: clean
-	rm -rf $(NAME) .cache
+	rm -rf $(NAME) .cache obj compile_commands.json
 
 re: fclean all
 
