@@ -11,19 +11,24 @@
 class AsyncLogger : public ILogger
 {
 public:
+	/*			Ctors/Dtors		  */
+	/*			Removed		  */
 	AsyncLogger() = delete;
-	explicit AsyncLogger(ILogger *);
 	AsyncLogger(const AsyncLogger &) = delete;
+	AsyncLogger &operator=(const AsyncLogger &) = delete;
+	/*			Active		  */
+	explicit AsyncLogger(ILogger *);
 	virtual ~AsyncLogger();
 
-	AsyncLogger &operator=(const AsyncLogger &) = delete;
 	/*			Interface		  */
 	virtual void	Log(const std::string &message, int level);
 	virtual void	SetMinLevel(int level);
 
+	/*			Public Methods		  */
 	void	AddLogger(ILogger *);
 
 private:
+	/*			Private Methods		  */
 	void	Run();
 
 private:
@@ -35,8 +40,6 @@ private:
 	std::mutex				mtx_;
 	std::condition_variable	cv_;
 	bool					endRequested_;
-
-
 };
 
 #endif

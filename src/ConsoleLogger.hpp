@@ -8,12 +8,16 @@
 class ConsoleLogger : public ILogger
 {
 public:
-	explicit ConsoleLogger(std::ostream &stream = std::cout, int minLvl = 0);
-	ConsoleLogger(const ConsoleLogger &) = delete;
+	/*			Ctors/Dtors		  */
+	/*			Removed		  */
+	ConsoleLogger() = delete;
 	ConsoleLogger &operator=(const ConsoleLogger &) = delete;
-
+	ConsoleLogger(const ConsoleLogger &) = delete;
+	/*			Active		  */
+	explicit ConsoleLogger(std::ostream &stream = std::cout, int minLvl = 0);
 	virtual ~ConsoleLogger();
 
+	/*			Interface		  */
 	virtual void	Log(const std::string &, int );
 	virtual void	SetMinLevel(int);
 

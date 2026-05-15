@@ -1,8 +1,9 @@
 #include <ctime>
 #include "FileLogger.hpp"
 
-FileLogger::FileLogger(std::string filePath): ofs_(filePath.c_str(), std::ios::app), minLvl_(0)
-{}
+/*----------------------------*/
+/*			Ctors/Dtors		  */
+/*----------------------------*/
 
 FileLogger::FileLogger(std::string filePath, int minLvl): 
 	ofs_(filePath.c_str(), std::ios::app), minLvl_(minLvl)
@@ -13,7 +14,11 @@ FileLogger::~FileLogger()
 	if (this->ofs_.is_open())
 		this->ofs_.close();
 }
-	
+
+/*----------------------------*/
+/*			Interface		  */
+/*----------------------------*/
+
 void	FileLogger::Log(const std::string &message, int level)
 {
 	if (level < this->minLvl_)	return ;

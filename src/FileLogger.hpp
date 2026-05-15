@@ -8,16 +8,20 @@
 class FileLogger : public ILogger
 {
 public:
+	/*			Ctors/Dtors		  */
+	/*			Removed		  */
 	FileLogger() = delete;
-	explicit FileLogger(std::string filePath);
-	explicit FileLogger(std::string filePath, int minLvl);
 	FileLogger(const FileLogger &) = delete;
-	virtual ~FileLogger();
 	FileLogger &operator=(const FileLogger &) = delete;
 
-	
+	/*			Removed		  */
+	explicit FileLogger(std::string filePath, int minLvl = 0);
+	virtual ~FileLogger();
+
+	/*			Interface		  */
 	virtual void	Log(const std::string &, int);
 	virtual void	SetMinLevel(int);
+
 private:
 	std::ofstream	ofs_;
 	int				minLvl_;

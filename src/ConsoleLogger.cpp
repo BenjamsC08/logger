@@ -3,12 +3,20 @@
 #include "ConsoleLogger.hpp"
 #include "def.hpp"
 
+/*----------------------------*/
+/*			Ctors/Dtors		  */
+/*----------------------------*/
+
 ConsoleLogger::ConsoleLogger(std::ostream &os, int minLvl): os_(os), minLevel_(minLvl)
 {}
 
 ConsoleLogger::~ConsoleLogger()
 {}
-	
+
+/*----------------------------*/
+/*			Interface		  */
+/*----------------------------*/
+
 void	ConsoleLogger::Log(const std::string &message, int level)
 {
 	if (level < this->minLevel_)

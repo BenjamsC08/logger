@@ -1,8 +1,11 @@
 #include "AsyncLogger.hpp"
-#include "def.hpp"
 #include <cstddef>
 #include <mutex>
 #include <utility>
+
+/*----------------------------*/
+/*			Ctors/Dtors		  */
+/*----------------------------*/
 
 AsyncLogger::AsyncLogger(ILogger *logger) : endRequested_(false)
 {
@@ -26,7 +29,10 @@ AsyncLogger::~AsyncLogger()
 		delete logger;
 }
 
+/*----------------------------*/
 /*			Interface		  */
+/*----------------------------*/
+
 void	AsyncLogger::Log(const std::string &message, int level)
 {
 	std::lock_guard<std::mutex> lock(this->mtx_);
@@ -43,12 +49,21 @@ void	AsyncLogger::SetMinLevel(int level)
 			logger->SetMinLevel(level);
 }
 
+/*--------------------------------*/
+/*			Public Methods		  */
+/*--------------------------------*/
+
 void	AsyncLogger::AddLogger(ILogger *logger)
 {
 	if (!logger)	return ;
 	std::lock_guard<std::mutex> lock(this->mtx_);
 	this->loggers_.push_back(logger);
 }
+
+
+/*--------------------------------*/
+/*			Private Methods		  */
+/*--------------------------------*/
 
 void	AsyncLogger::Run()
 {
