@@ -25,13 +25,16 @@ void	FileLogger::Log(const std::string &message, int level)
 	switch (level)
 	{
 		case 0:
-			start += " | [Info] ";
+			start += " | [DEBUG] ";
 			break;
 		case 1:
-			start += " | [Warn] ";
+			start += " | [INFO] ";
 			break;
 		case 2:
-			start += " | [Err] ";
+			start += " | [WARN] ";
+			break;
+		case 3:
+			start += " | [ERR] ";
 			break;
 		default:
 			start += " | ";

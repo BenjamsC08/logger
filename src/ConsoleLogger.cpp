@@ -18,17 +18,27 @@ void	ConsoleLogger::Log(const std::string &message, int level)
 	switch (level)
 	{
 		case 0:
-			start = CYAN;
-			start += "[Info] ";
+			start = GRAY;
+			start += "[DEBUG] ";
 			break;
 		case 1:
-			start = YELLOW;
-			start += "[Warn] ";
+			start = CYAN;
+			start += "[INFO] ";
 			break;
+
 		case 2:
-			start = RED;
-			start += "[Err] ";
+			start = YELLOW;
+			start += "[WARN] ";
 			break;
+		case 3:
+			start = RED;
+			start += "[ERR] ";
+			break;
+		default:
+			start = MAGENTA;
+			start += "[No code] ";
+			break;
+
 	}
 	this->os_ << start << message << RESET << '\n';
 }
