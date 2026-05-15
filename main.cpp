@@ -1,25 +1,21 @@
 
-#include "ConsoleLogger.hpp"
-#include "FileLogger.hpp"
-#include "ILogger.hpp"
+#include "LoggerFactory.hpp"
 
 int main()
 {
-	ILogger *logger = new ConsoleLogger(std::cerr, 0);
+	auto logger = CreateLogger("console");
 
 	logger->Log("ceci est un test0", DEBUG);
 	logger->Log("ceci est un test1", INFO);
 	logger->Log("ceci est un test2", WARN);
 	logger->Log("ceci est un test3", ERROR);
 
-	delete logger;
 
-	logger = new FileLogger("test.log", 1);
+	auto logger1 = CreateLogger("file", "test.log", 1);
 
-	logger->Log("ceci est un test0", DEBUG);
-	logger->Log("ceci est un test1", INFO);
-	logger->Log("ceci est un test2", WARN);
-	logger->Log("ceci est un test3", ERROR);
+	logger1->Log("ceci est un test0", DEBUG);
+	logger1->Log("ceci est un test1", INFO);
+	logger1->Log("ceci est un test2", WARN);
+	logger1->Log("ceci est un test3", ERROR);
 
-	delete logger;
 }

@@ -1,7 +1,7 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++11 -g3
 NAME = logger
-SRCS = main.cpp src/ConsoleLogger.cpp src/FileLogger.cpp
+SRCS = main.cpp src/ConsoleLogger.cpp src/FileLogger.cpp src/LoggerFactory.cpp
 INCLUDE_PATH = -Isrc -Iinclude
 
 OBJ_DIR = obj/
