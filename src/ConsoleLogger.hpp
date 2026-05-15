@@ -8,7 +8,7 @@
 class ConsoleLogger : public ILogger
 {
 public:
-	ConsoleLogger(std::ostream &stream = std::cout, int minLvl = 0);
+	explicit ConsoleLogger(std::ostream &stream = std::cout, int minLvl = 0);
 	ConsoleLogger(const ConsoleLogger &) = delete;
 	ConsoleLogger &operator=(const ConsoleLogger &) = delete;
 

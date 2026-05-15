@@ -1,5 +1,4 @@
 #include <iostream>
-#include <ostream>
 
 #include "ConsoleLogger.hpp"
 #include "def.hpp"
@@ -17,20 +16,19 @@ void	ConsoleLogger::Log(const std::string &message, int level)
 	std::string start;
 	switch (level)
 	{
-		case 0:
+		case DEBUG:
 			start = GRAY;
 			start += "[DEBUG] ";
 			break;
-		case 1:
+		case INFO:
 			start = CYAN;
 			start += "[INFO] ";
 			break;
-
-		case 2:
+		case WARN:
 			start = YELLOW;
 			start += "[WARN] ";
 			break;
-		case 3:
+		case ERROR:
 			start = RED;
 			start += "[ERR] ";
 			break;
@@ -38,7 +36,6 @@ void	ConsoleLogger::Log(const std::string &message, int level)
 			start = MAGENTA;
 			start += "[No code] ";
 			break;
-
 	}
 	this->os_ << start << message << RESET << '\n';
 }

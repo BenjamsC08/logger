@@ -9,8 +9,8 @@ class FileLogger : public ILogger
 {
 public:
 	FileLogger() = delete;
-	FileLogger(std::string);
-	FileLogger(std::string, int);
+	explicit FileLogger(std::string filePath);
+	explicit FileLogger(std::string filePath, int minLvl);
 	FileLogger(const FileLogger &) = delete;
 	virtual ~FileLogger();
 	FileLogger &operator=(const FileLogger &) = delete;

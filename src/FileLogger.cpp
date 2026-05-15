@@ -16,31 +16,25 @@ FileLogger::~FileLogger()
 	
 void	FileLogger::Log(const std::string &message, int level)
 {
-	if (level < this->minLvl_)
-		return ;
-	std::time_t now = std::time(NULL);
-	char buff[16];
-	std::strftime(buff, sizeof(buff),"%y%m%d-%H%M", std::localtime(&now));
-	std::string start = std::string(buff);
+	if (level < this->minLvl_)	return ;
+	char		buff[32];
+	std::string start;
+
+	std::time_t now = std::time(nullptr);
+	std::tm tm_buf{};
+	localtime_r(&now, &tm_buf);
+	std::strftime(buff, sizeof(buff),"%y%m%d-%H%M%S", &tm_buf);
+
+	start = std::string(buff);
 	switch (level)
 	{
-		case 0:
-			start += " | [DEBUG] ";
-			break;
-		case 1:
-			start += " | [INFO] ";
-			break;
-		case 2:
-			start += " | [WARN] ";
-			break;
-		case 3:
-			start += " | [ERR] ";
-			break;
-		default:
-			start += " | ";
+		case DEBUG: start += " | [DEBUG] ";	break;
+		case INFO:	start += " | [INFO] ";	break;
+		case WARN:	start += " | [WARN] ";	break;
+		case ERROR:	start += " | [ERR] ";	break;
+		default:	start += " | ";
 	}
-	start += message;
-	ofs_ << start << '\n';
+	ofs_ << start << message << '\n';
 }
 	
 void	FileLogger::SetMinLevel(int lvl)
