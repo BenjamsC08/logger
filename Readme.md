@@ -33,7 +33,7 @@ int main()
     return 0;
 }
 ```
-### import
+### Import
 - Clone the project
 - Compile with `make` commands
 - copy the `liblog.a` and `include/Logger.hpp` to your project
