@@ -7,7 +7,7 @@ You need to create a `Logger`. I have coded 3 types of them:
 - FileLogger    (do what the name suggest)
 - AsyncLogger   (thread splitted one)
 
-You can actually manage multiple `Loggers` like ones only in **AsyncLogger** with the *AddLogger* methods of it.
+You can actually manage multiple `Loggers` like one only in **AsyncLogger** with the *AddLogger* methods of it.
 
 4 levels of logs: `DEBUG`, `INFO`, `WARN`, `ERROR`
 #### Exemple
