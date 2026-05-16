@@ -1,7 +1,7 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++11 -g3
 NAME = liblog.a
-SRCS = src/ConsoleLogger.cpp src/FileLogger.cpp src/LoggerFactory.cpp src/AsyncLogger.cpp
+SRCS = src/ConsoleLogger.cpp src/FileLogger.cpp src/AsyncLogger.cpp
 INCLUDE_PATH = -Isrc
 
 OBJ_DIR = obj/
