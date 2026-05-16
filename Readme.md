@@ -2,14 +2,14 @@
 
 ## How to use
 ### Code
-You need to create a Logger. I have coded 3 types of them:
-- ConsoleLogger 
-- FileLogger
-- AsyncLogger
+You need to create a `Logger`. I have coded 3 types of them:
+- ConsoleLogger (classic one)
+- FileLogger    (do what the name suggest)
+- AsyncLogger   (thread splitted one)
 
-You can actually manage multiple Loggers like ones only in **AsyncLogger** with the *AddLogger* methods of it.
+You can actually manage multiple `Loggers` like ones only in **AsyncLogger** with the *AddLogger* methods of it.
 
-4 levels of Logs: **DEBUG**, **INFO**, **WARN**, **ERROR**
+4 levels of logs: `DEBUG`, `INFO`, `WARN`, `ERROR`
 #### Exemple
 ```
 int main()
@@ -35,8 +35,8 @@ int main()
 ```
 ### import
 - Clone the project
-- Compile with make commands
-- copy the liblog.a and include/Logger.hpp to your project
+- Compile with `make` commands
+- copy the `liblog.a` and `include/Logger.hpp` to your project
 - if you use a Makefile need to add the .hpp file to your includes `-I`, the libpath with `-L` and the libname with `-l`
 
 ## Why i've doing this
