@@ -1,13 +1,15 @@
 #ifndef ASYNCLOGGER_HPP
 # define ASYNCLOGGER_HPP
 
-#include "ILogger.hpp"
-#include <condition_variable>
-#include <deque>
-#include <mutex>
-#include <string>
-#include <thread>
-#include <vector>
+# include <condition_variable>
+# include <deque>
+# include <mutex>
+# include <string>
+# include <thread>
+# include <vector>
+
+# include "ILogger.hpp"
+
 class AsyncLogger : public ILogger
 {
 public:

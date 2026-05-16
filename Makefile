@@ -4,6 +4,8 @@ NAME = logger
 SRCS = src/main.cpp src/ConsoleLogger.cpp src/FileLogger.cpp src/LoggerFactory.cpp src/AsyncLogger.cpp
 INCLUDE_PATH = -Isrc -Iinclude
 
+LIB = export/liblog.a
+
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.cpp=.o)))
 
@@ -13,9 +15,12 @@ LOADING = \033[1;33m
 INFOS = \033[1;36m
 RESET = \033[0m
 
-VPATH = src:src
+VPATH = src
 
 all: $(NAME)
+
+lib: $(OBJ)
+	@ar rcs $(LIB) $^
 
 $(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INCLUDE_PATH) -MMD -c $< -o $@

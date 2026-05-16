@@ -1,7 +1,8 @@
-#include "AsyncLogger.hpp"
 #include <cstddef>
 #include <mutex>
 #include <utility>
+
+#include "AsyncLogger.hpp"
 
 /*----------------------------*/
 /*			Ctors/Dtors		  */
