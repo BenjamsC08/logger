@@ -5,7 +5,7 @@
 You need to create a `Logger`. I have coded 3 types of them:
 - ConsoleLogger (classic one)
 - FileLogger    (do what the name suggest)
-- AsyncLogger   (thread splitted one)
+- AsyncLogger   (multithreaded one)
 
 You can actually manage multiple `Loggers` like one only in **AsyncLogger** with the *AddLogger* methods of it.
 
