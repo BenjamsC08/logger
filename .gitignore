@@ -4,3 +4,4 @@ obj
 *.json
 *.log
 *.d
+liblog.a

@@ -1,10 +1,8 @@
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++11 -g3
-NAME = logger
-SRCS = src/main.cpp src/ConsoleLogger.cpp src/FileLogger.cpp src/LoggerFactory.cpp src/AsyncLogger.cpp
-INCLUDE_PATH = -Isrc -Iinclude
-
-LIB = export/liblog.a
+NAME = liblog.a
+SRCS = src/ConsoleLogger.cpp src/FileLogger.cpp src/LoggerFactory.cpp src/AsyncLogger.cpp
+INCLUDE_PATH = -Isrc
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.cpp=.o)))
@@ -19,8 +17,8 @@ VPATH = src
 
 all: $(NAME)
 
-lib: $(OBJ)
-	@ar rcs $(LIB) $^
+$(NAME): $(OBJ)
+	@ar rcs $@ $^
 
 $(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INCLUDE_PATH) -MMD -c $< -o $@
@@ -28,8 +26,8 @@ $(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) $(INCLUDE_PATH) -o $(NAME)
+# $(NAME): $(OBJ)
+# 	$(CC) $(FLAGS) $(OBJ) $(INCLUDE_PATH) -o $(NAME)
 
 clean:
 	rm -f $(OBJ) obj/*/*.d obj/*.d
